@@ -14,7 +14,6 @@ export default class DungeonView extends Component {
 
   componentWillMount () {
     const dungeon = dungeonGenerator()
-    console.log(dungeon)
 
     this.setState({
       dungeonInstance: dungeon,

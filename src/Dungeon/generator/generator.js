@@ -1,7 +1,10 @@
-import * as tileTypes from './tileTypes'
+import {
+  tileEnum,
+  TILE_VOID,
+  TILE_WALL,
+  TILE_CLEAR,
+} from './tileTypes'
 import randBetween from './randBetween'
-
-const tileEnum = Object.keys(tileTypes).map((t) => tileTypes[t])
 
 class Dungeon {
   constructor (config) {
@@ -15,7 +18,7 @@ class Dungeon {
     for (let hi = 0; hi < h; hi++) {
       this.field[hi] = []
       for (let wi = 0; wi < w; wi++) {
-        this.field[hi][wi] = 0
+        this.field[hi][wi] = TILE_VOID
       }
     }
   }
@@ -38,9 +41,9 @@ class Dungeon {
           (iY === y || iY === y + h - 1) ||
           (iX === x || iX === x + w - 1)
         ) {
-          this.field[iY][iX] = 1 // wall
+          this.field[iY][iX] = TILE_WALL
         } else {
-          this.field[iY][iX] = 2 // floor
+          this.field[iY][iX] = TILE_CLEAR
         }
       }
     }
