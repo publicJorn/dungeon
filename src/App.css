@@ -1,0 +1,11 @@
+html {
+  margin: 0;
+  font-family: monospace;
+  font-size: 20px;
+  color: #9DA2A5;
+  background-color: #14171A;
+}
+
+.Title {
+  text-align: center;
+}

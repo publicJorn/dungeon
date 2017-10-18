@@ -1,0 +1,20 @@
+.PlayField-Container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.PlayField {}
+
+.Tile__Void {
+  fill: #14171A;
+}
+
+.Tile__Wall {
+  fill: #a09a82;
+}
+
+.Tile__Clear {
+  fill: #e0dccc;
+}
