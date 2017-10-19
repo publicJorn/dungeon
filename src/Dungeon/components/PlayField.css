@@ -5,7 +5,9 @@
   height: 300px;
 }
 
-.PlayField {}
+.PlayField {
+  border: 1px solid #999;
+}
 
 .Tile__Void {
   fill: #14171A;

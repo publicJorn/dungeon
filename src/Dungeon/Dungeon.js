@@ -7,8 +7,7 @@ export default class DungeonView extends Component {
     super(props)
 
     this.state = {
-      dungeonInstance: null,
-      field: [[]],
+      dungeon: null,
     }
   }
 
@@ -16,12 +15,11 @@ export default class DungeonView extends Component {
     const dungeon = dungeonGenerator()
 
     this.setState({
-      dungeonInstance: dungeon,
-      field: dungeon.getField(),
+      dungeon,
     })
   }
 
   render () {
-    return <PlayField field={this.state.field} />
+    return <PlayField field={this.state.dungeon.getField()} />
   }
 }

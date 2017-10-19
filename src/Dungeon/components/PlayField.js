@@ -2,20 +2,13 @@ import React from 'react'
 import Tile from './Tile'
 import './PlayField.css'
 
-/**
- * Expect arrar of array for field
- *
- * X X X X X → row • tile
- * X O O O X
- * X O O O O
- * X O O O X
- * X X X X X
- *
- */
 export default ({ field }) => {
+  const width = field[0].length * 10
+  const height = field.length * 10
+
   return (
     <div className="PlayField-Container">
-      <svg className="PlayField">
+      <svg className="PlayField" width={width} height={height}>
         {field && field.map((row, y) => row.map((tile, x) => <Tile key={`${x}-${y}`} x={x} y={y} type={tile} />))}
       </svg>
     </div>

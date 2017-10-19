@@ -9,7 +9,11 @@ import randBetween from './randBetween'
 class Dungeon {
   constructor (config) {
     this.createField(32, 18)
-    this.addRoom(3, 3, 5, 5)
+    this.addRoom(3, 3,
+      randBetween(config.roomMin, config.roomMax),
+      randBetween(config.roomMin, config.roomMax),
+    )
+    this.addRoom(3, 3, 3, 3)
   }
 
   createField (w, h) {
@@ -24,11 +28,18 @@ class Dungeon {
   }
 
   addRoom (x, y, w, h) {
-    if (
-      this.field.length - y - h < 0 &&
-      this.field[0].length - x- w < 0
-    ) {
-      console.warn('Not enough space for room')
+    // const tilesTaken = [] // TODO: Can be used for intersection - save [ri][ti]
+    const rowsWithCollisions = this.field.filter((row, ri) =>
+      // If a new box is requested in a row, loop through it's tiles.
+      // For each requested spot, add the tile type number. If it's VOID (0),
+      // nothing will be added and this row will be clear for placement.
+      (ri >= y) && (ri <= y + h) && row.reduce((tilesInRange, tile, ti) =>
+        tilesInRange + ((ti >= x) && (ti <= x + w) ? tile : 0)
+      )
+    ).length
+
+    if (rowsWithCollisions) {
+      console.warn(`Not enough space for this room (x:${x}, y:${y}, w:${w}, h:${h})`)
       return
     }
 
@@ -56,8 +67,8 @@ class Dungeon {
 }
 
 export const defaultConfig = {
-  roomMin: 5,
-  roomMax: 5,
+  roomMin: 3,
+  roomMax: 9,
 }
 
 export default (config = defaultConfig) => new Dungeon(config)
