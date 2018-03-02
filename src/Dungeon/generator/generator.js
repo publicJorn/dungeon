@@ -8,11 +8,8 @@ import randBetween from './randBetween'
 
 class Dungeon {
   constructor (config) {
+    this.config = config
     this.createField(32, 18)
-    this.addRoom(3, 3,
-      randBetween(config.roomMin, config.roomMax),
-      randBetween(config.roomMin, config.roomMax),
-    )
     this.addRoom(3, 3, 3, 3)
   }
 
@@ -25,6 +22,10 @@ class Dungeon {
         this.field[hi][wi] = TILE_VOID
       }
     }
+  }
+
+  defineRoom () {
+
   }
 
   addRoom (x, y, w, h) {
